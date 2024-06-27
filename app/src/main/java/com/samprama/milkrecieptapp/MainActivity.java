@@ -65,6 +65,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TesterNameData testerNameData;
     VehicleNoData vehicleNoData;
     private ProgressDialog progressDialog;
-    LocalDateTime now;
-    DateTimeFormatter formatter;
+    Date now = new Date();
     String formattedDate;
     boolean isVehicleClick = false;
     boolean isTesterClick = false;
@@ -135,11 +136,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new String[]{READ_PHONE_NUMBERS},
                 PackageManager.PERMISSION_GRANTED);
         getMobileNumberFromDevice();
-        now = LocalDateTime.now(ZoneId.of("UTC"));
+        // Define the desired format
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        // Create a formatter for the desired date format
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
+        // Format the current date and time
+        formattedDate = formatter.format(now);
 
         editTextRectDate = findViewById(R.id.edit_main_rect_date);
         editTextMobileNo = findViewById(R.id.edit_main_mobile_no);
@@ -214,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        getMobileNumberFromDevice();
+        fetchRectNumberData();
     }
 
 
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             String mobileNumber = subscriptionManager.getPhoneNumber(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
           //  editTextMobileNo.setText(mobileNumber);
-            fetchMobileData(mobileNumber);
+            fetchMobileData("9814416276");
 
         }else {
             System.out.println("no ");
@@ -298,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    }
 
     public void fetchMobileData(String mobileNo){
-        progressDialog = createProgressDialog(MainActivity.this);
+        ProgressDialog progressDialog1 = createProgressDialog(MainActivity.this);
         if (mobileNo!=null) {
             Call<CheckMobileModel> callMobileData = RetrofitClient
                     .getApiServices()
@@ -309,12 +311,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (response.isSuccessful()) {
                         if (response.body().getMessage().equals("Valid MobileNo")) {
                             editTextMobileNo.setText(mobileNo);
-                            progressDialog.dismiss();
                             fetchRectNumberData();
                             getLastTesterByMobile(mobileNo);
                             getLastVehicleByMobile(mobileNo);
+                            progressDialog1.dismiss();
                         } else {
-                            progressDialog.dismiss();
+                            progressDialog1.dismiss();
                             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                             alertDialog.setTitle("User Authentication");
                             alertDialog.setMessage("Your mobile no is not valid !");
@@ -332,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                     }else {
-                        progressDialog.dismiss();
+                        progressDialog1.dismiss();
                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                         alertDialog.setTitle("User Authentication");
                         alertDialog.setMessage("Your mobile no is not valid !");
@@ -463,7 +465,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void fetchRectNumberData(){
-        progressDialog = createProgressDialog(MainActivity.this);
+       // progressDialog = createProgressDialog(MainActivity.this);
         Call<RectNoModel> callRectNo = RetrofitClient
                 .getApiServices()
                 .getRectNoDataFromServer();
@@ -473,16 +475,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     ResponseDataModels rectNo = response.body().getData();
                     editTextRectNO.setText(String.valueOf(rectNo.getRectNo()));
-                    progressDialog.dismiss();
+          //          progressDialog.dismiss();
                 }else {
-                    progressDialog.dismiss();
+              //      progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<RectNoModel> call, Throwable t) {
                 Log.e("Error",t.getMessage());
-                progressDialog.dismiss();
+          //      progressDialog.dismiss();
             }
         });
 
@@ -593,9 +595,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rectModel.setFatPer(editTextFAT.getText().toString());
         rectModel.setClr(editTextCLR.getText().toString());
         rectModel.setSnfPer(editTextSNF.getText().toString());
-        rectModel.setTemperature(editTextTemp.getText().toString());
-        rectModel.setFlushValue(editTextFlushValue.getText().toString());
-        rectModel.setDipReading(editTextDIPReading.getText().toString());
+        if (!TextUtils.isEmpty(editTextTemp.getText().toString())
+                &&!TextUtils.isEmpty(editTextFlushValue.getText().toString())
+                &&!TextUtils.isEmpty(editTextDIPReading.getText().toString())) {
+            rectModel.setTemperature(editTextTemp.getText().toString());
+            rectModel.setFlushValue(editTextFlushValue.getText().toString());
+            rectModel.setDipReading(editTextDIPReading.getText().toString());
+        }else {
+            rectModel.setTemperature("0");
+            rectModel.setFlushValue("0");
+            rectModel.setDipReading("0");
+        }
         rectModel.setBmQty("0");
         rectModel.setBmFat("0");
         rectModel.setBmClr("0");
@@ -615,6 +625,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()){
                     Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     clearAllEditTextData();
+                }else {
+                    System.out.println(response.message());
                 }
             }
 
