@@ -209,14 +209,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editTextRectNO = findViewById(R.id.edit_main_rect_no);
 
-        fetchRectNumberData();
-        //sendReceiptDataFromServer();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        fetchRectNumberData();
+        getMobileNumberFromDevice();
     }
 
 
@@ -281,12 +279,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             String mobileNumber = subscriptionManager.getPhoneNumber(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
           //  editTextMobileNo.setText(mobileNumber);
-            fetchMobileData("9814416276");
+            fetchMobileData(mobileNumber);
 
         }else {
             System.out.println("no ");
         }
     }
+
 //    private void fetchPhoneNumber() {
 //        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -311,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if (response.body().getMessage().equals("Valid MobileNo")) {
                             editTextMobileNo.setText(mobileNo);
                             progressDialog.dismiss();
+                            fetchRectNumberData();
                             getLastTesterByMobile(mobileNo);
                             getLastVehicleByMobile(mobileNo);
                         } else {
@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void fetchRectNumberData(){
-      //  progressDialog = createProgressDialog(MainActivity.this);
+        progressDialog = createProgressDialog(MainActivity.this);
         Call<RectNoModel> callRectNo = RetrofitClient
                 .getApiServices()
                 .getRectNoDataFromServer();
@@ -473,9 +473,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     ResponseDataModels rectNo = response.body().getData();
                     editTextRectNO.setText(String.valueOf(rectNo.getRectNo()));
-        //            progressDialog.dismiss();
+                    progressDialog.dismiss();
                 }else {
-         //           progressDialog.dismiss();
+                    progressDialog.dismiss();
                 }
             }
 
