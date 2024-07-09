@@ -1,8 +1,6 @@
 package com.samprama.milkrecieptapp;
 
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
-import static android.Manifest.permission.READ_PHONE_STATE;
-import static android.Manifest.permission.READ_SMS;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -10,22 +8,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Credentials;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -47,7 +40,6 @@ import com.samprama.milkrecieptapp.model.CreateMilkRectModel;
 import com.samprama.milkrecieptapp.model.GetAllAgencyModel;
 import com.samprama.milkrecieptapp.model.GetAllTesterModel;
 import com.samprama.milkrecieptapp.model.GetAllVehicleModel;
-import com.samprama.milkrecieptapp.model.LoginData;
 import com.samprama.milkrecieptapp.model.RecResponseModel;
 import com.samprama.milkrecieptapp.model.RectNoModel;
 import com.samprama.milkrecieptapp.model.ResponseDataModels;
@@ -55,14 +47,9 @@ import com.samprama.milkrecieptapp.model.TesterNameData;
 import com.samprama.milkrecieptapp.model.TesterNameModel;
 import com.samprama.milkrecieptapp.model.VehicleNoData;
 import com.samprama.milkrecieptapp.model.VehicleNoModel;
-import com.samprama.milkrecieptapp.ui.LoginActivity;
-import com.samprama.milkrecieptapp.utils.PreferenceUtil;
 import com.samprama.milkrecieptapp.webservices.RetrofitClient;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -281,23 +268,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             String mobileNumber = subscriptionManager.getPhoneNumber(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
           //  editTextMobileNo.setText(mobileNumber);
-            fetchMobileData("9814416276");
+            fetchMobileData(mobileNumber);
 
         }else {
             System.out.println("no ");
         }
     }
 
-//    private void fetchPhoneNumber() {
-//        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        String phoneNumber = telephonyManager.getLine1Number();
-//        if (phoneNumber!=null) {
-//
-//        }
-//    }
 
     public void fetchMobileData(String mobileNo){
         ProgressDialog progressDialog1 = createProgressDialog(MainActivity.this);
