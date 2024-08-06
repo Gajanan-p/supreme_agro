@@ -17,10 +17,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wel come to Supreme Agro application"
+        android:text="Wel Come To Supreme Agro"
         android:textColor="@color/red"
         android:textAlignment="center"
         android:textStyle="bold"
+        android:textFontWeight="700"
+        android:fontFamily="serif"
         android:textSize="18sp"/>
 
 

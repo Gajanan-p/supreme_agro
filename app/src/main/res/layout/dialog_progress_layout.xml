@@ -16,6 +16,8 @@
         android:text="Loading...."
         android:layout_marginTop="30dp"
         android:textSize="20sp"
+        android:textFontWeight="500"
+        android:fontFamily="serif"
         android:layout_below="@+id/progressBar"
         android:textColor="#032770"/>
 

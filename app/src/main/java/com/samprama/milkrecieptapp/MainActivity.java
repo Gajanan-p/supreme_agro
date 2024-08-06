@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -19,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -62,7 +65,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         VehicleItemClickListener, TesterItemClickListener, AgencyItemClickListener {
 
-    private static final int REQUEST_CODE = 1;
+    private static final int PERMISSION_REQUEST_CODE = 1;
     private TextInputEditText editTextRectDate;
     private TextInputEditText editTextRectNO;
     private TextInputEditText editTextMobileNo;
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Handler handler = new Handler();
     private Runnable saveRunnable;
     private long delay = 500; // 500 milliseconds delay for debounce
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("MissingInflatedId")
     @Override
@@ -119,10 +123,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             window.setStatusBarColor(this.getResources().getColor(R.color.blue_tool_bar));
             window.setTitle("Home");
         }
-        ActivityCompat.requestPermissions(this,
-                new String[]{READ_PHONE_NUMBERS},
-                PackageManager.PERMISSION_GRANTED);
-        getMobileNumberFromDevice();
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//            String phoneNumber = telephonyManager.getLine1Number();
+//            if (phoneNumber!=null) {
+//                fetchMobileData(phoneNumber);
+//            }
+//            // Use the phone number as needed
+//        } else {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+//        }
+//        ActivityCompat.requestPermissions(this,
+//                new String[]{READ_PHONE_NUMBERS},
+//                PackageManager.PERMISSION_GRANTED);
+//        getMobileNumberFromDevice();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.READ_SMS,
+                            Manifest.permission.READ_PHONE_NUMBERS
+                    }, PERMISSION_REQUEST_CODE);
+        } else {
+            getPhoneNumber();
+        }
         // Define the desired format
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -212,15 +241,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.button_main_submit_database: {
                 if (!TextUtils.isEmpty(editTextQty.getText().toString())
-                        &&!TextUtils.isEmpty(editTextAgency.getText().toString())
-                        &&!TextUtils.isEmpty(editTextZone.getText().toString())
-                        &&!TextUtils.isEmpty(editTextVehicleNo.getText().toString())
-                        &&!TextUtils.isEmpty(editTextSNF.getText().toString())
-                        &&!TextUtils.isEmpty(editTextTester.getText().toString())
-                        &&!TextUtils.isEmpty(editTextFAT.getText().toString())
-                        &&!TextUtils.isEmpty(editTextCLR.getText().toString())) {
+                        && !TextUtils.isEmpty(editTextAgency.getText().toString())
+                        && !TextUtils.isEmpty(editTextZone.getText().toString())
+                        && !TextUtils.isEmpty(editTextVehicleNo.getText().toString())
+                        && !TextUtils.isEmpty(editTextSNF.getText().toString())
+                        && !TextUtils.isEmpty(editTextTester.getText().toString())
+                        && !TextUtils.isEmpty(editTextFAT.getText().toString())
+                        && !TextUtils.isEmpty(editTextCLR.getText().toString())) {
                     sendReceiptDataFromServer();
-                }else {
+                } else {
                     Toast.makeText(MainActivity.this, "VehicleNo,Agency,Zone,Tester,Qty,CLR,Fat field are mandatory please fill this fields!", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -243,14 +272,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getMobileNumberFromDevice();
+//        if (requestCode == REQUEST_CODE) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                getMobileNumberFromDevice();
+//            } else {
+//                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+
+//        if (requestCode == 1) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//                    // TODO: Consider calling
+//                    //    ActivityCompat#requestPermissions
+//                    // here to request the missing permissions, and then overriding
+//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                    //                                          int[] grantResults)
+//                    // to handle the case where the user grants the permission. See the documentation
+//                    // for ActivityCompat#requestPermissions for more details.
+//                    return;
+//                }
+//                String phoneNumber = telephonyManager.getLine1Number();
+//                System.out.println(phoneNumber);
+//                // Use the phone number as needed
+//            }
+//        }
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length == permissions.length) {
+                boolean allGranted = true;
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        allGranted = false;
+                        break;
+                    }
+                }
+                if (allGranted) {
+                    getPhoneNumber();
+                } else {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Permission Request Failed", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
+
+    private void getPhoneNumber() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        String phoneNumber = telephonyManager.getLine1Number();
+        Toast.makeText(this, "Phone Number: " + phoneNumber, Toast.LENGTH_LONG).show();
+        fetchMobileData(phoneNumber);
+    }
+
 
     public void getMobileNumberFromDevice() {
         SubscriptionManager subscriptionManager = (SubscriptionManager) getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);

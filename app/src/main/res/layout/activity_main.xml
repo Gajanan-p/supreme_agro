@@ -48,6 +48,8 @@
                             android:focusableInTouchMode="false"
                             android:gravity="left|center_vertical"
                             android:hint="Rect Date"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:inputType="none"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -70,6 +72,8 @@
                             android:focusable="false"
                             android:gravity="center|center_vertical"
                             android:hint="Rect Number"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:inputType="none"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +99,8 @@
                             android:layout_height="wrap_content"
                             android:clickable="false"
                             android:focusable="false"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:gravity="left|center_vertical"
                             android:hint="Mobile Number"
                             android:inputType="none"
@@ -116,6 +122,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:gravity="center|center_vertical"
                             android:hint="Select Vehicle Number"
                             android:inputType="none"
@@ -142,6 +150,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:gravity="left|center_vertical"
                             android:hint="Select Agency name "
                             android:textColor="@color/blue_tool_bar" />
@@ -168,6 +178,8 @@
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:focusable="false"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:focusableInTouchMode="false"
                             android:gravity="left|center_vertical"
                             android:hint="Zone "
@@ -195,6 +207,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:gravity="left|center_vertical"
                             android:hint="Tester"
                             android:inputType="none"
@@ -223,6 +237,8 @@
                             android:gravity="left|center_vertical"
                             android:hint="Enter Quantity"
                             android:inputType="number"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:lines="1"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -244,6 +260,8 @@
                             android:gravity="left|center_vertical"
                             android:hint="Enter Temperature"
                             android:inputType="number"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:lines="1"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -269,6 +287,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="left|center_vertical"
                             android:lines="1"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:textColor="@color/blue_tool_bar"
                             android:hint="Enter FAT %"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -292,6 +312,8 @@
                             android:hint="Enter DIP Reading"
                             android:inputType="number"
                             android:lines="1"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -316,6 +338,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="left|center_vertical"
                             android:lines="1"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:textColor="@color/blue_tool_bar"
                             android:hint="Enter CLR"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -339,6 +363,8 @@
                             android:gravity="left|center_vertical"
                             android:hint="Enter Flush Value"
                             android:lines="1"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:inputType="number"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -367,6 +393,8 @@
                             android:focusable="false"
                             android:hint="SNF %"
                             android:lines="1"
+                            android:textFontWeight="500"
+                            android:fontFamily="serif"
                             android:inputType="none"
                             android:textColor="@color/blue_tool_bar" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -574,6 +602,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_background"
+                    android:fontFamily="serif"
+                    android:textFontWeight="700"
                     android:text="submit"
                     android:textColor="@color/white" />
 

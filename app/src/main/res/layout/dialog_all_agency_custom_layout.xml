@@ -13,6 +13,8 @@
         android:textSize="18sp"
         android:padding="4dp"
         android:hint="Search agency code.."
+        android:textFontWeight="500"
+        android:fontFamily="serif"
         android:drawableLeft="@drawable/baseline_search_24"
         />
 

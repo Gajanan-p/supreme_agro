@@ -10,6 +10,8 @@
         android:textSize="16sp"
         android:padding="4dp"
         android:textStyle="bold"
+        android:textFontWeight="500"
+        android:fontFamily="serif"
         android:textAlignment="center"
         android:textColor="@color/blue_tool_bar"
         android:background="@drawable/row_background"
