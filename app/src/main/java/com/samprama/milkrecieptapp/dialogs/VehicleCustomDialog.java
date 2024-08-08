@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 

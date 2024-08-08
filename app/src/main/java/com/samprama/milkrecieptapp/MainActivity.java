@@ -30,7 +30,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.samprama.milkrecieptapp.dialogs.AgencyItemClickListener;
 import com.samprama.milkrecieptapp.dialogs.GetAgencyAgencyDialog;
@@ -121,23 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.blue_tool_bar));
-            window.setTitle("Home");
         }
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-//                == PackageManager.PERMISSION_GRANTED) {
-//            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//            String phoneNumber = telephonyManager.getLine1Number();
-//            if (phoneNumber!=null) {
-//                fetchMobileData(phoneNumber);
-//            }
-//            // Use the phone number as needed
-//        } else {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-//        }
-//        ActivityCompat.requestPermissions(this,
-//                new String[]{READ_PHONE_NUMBERS},
-//                PackageManager.PERMISSION_GRANTED);
-//        getMobileNumberFromDevice();
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
@@ -272,33 +255,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == REQUEST_CODE) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                getMobileNumberFromDevice();
-//            } else {
-//                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-
-//        if (requestCode == 1) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//                    // TODO: Consider calling
-//                    //    ActivityCompat#requestPermissions
-//                    // here to request the missing permissions, and then overriding
-//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                    //                                          int[] grantResults)
-//                    // to handle the case where the user grants the permission. See the documentation
-//                    // for ActivityCompat#requestPermissions for more details.
-//                    return;
-//                }
-//                String phoneNumber = telephonyManager.getLine1Number();
-//                System.out.println(phoneNumber);
-//                // Use the phone number as needed
-//            }
-//        }
-
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.length == permissions.length) {
                 boolean allGranted = true;
@@ -328,32 +284,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         String phoneNumber = telephonyManager.getLine1Number();
-        Toast.makeText(this, "Phone Number: " + phoneNumber, Toast.LENGTH_LONG).show();
         fetchMobileData(phoneNumber);
-    }
-
-
-    public void getMobileNumberFromDevice() {
-        SubscriptionManager subscriptionManager = (SubscriptionManager) getSystemService(TELEPHONY_SUBSCRIPTION_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            String mobileNumber = subscriptionManager.getPhoneNumber(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
-          //  editTextMobileNo.setText(mobileNumber);
-            fetchMobileData(mobileNumber);
-
-        }else {
-            System.out.println("no ");
-        }
     }
 
 
@@ -523,7 +454,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void fetchRectNumberData(){
-       // progressDialog = createProgressDialog(MainActivity.this);
         Call<RectNoModel> callRectNo = RetrofitClient
                 .getApiServices()
                 .getRectNoDataFromServer();
@@ -533,16 +463,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     ResponseDataModels rectNo = response.body().getData();
                     editTextRectNO.setText(String.valueOf(rectNo.getRectNo()));
-          //          progressDialog.dismiss();
-                }else {
-              //      progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<RectNoModel> call, Throwable t) {
                 Log.e("Error",t.getMessage());
-          //      progressDialog.dismiss();
             }
         });
 
@@ -553,7 +479,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             String clrStr = editTextCLR.getText().toString();
             String fatStr = editTextFAT.getText().toString();
-
             if (!clrStr.isEmpty() && !fatStr.isEmpty()) {
                 double clr = Double.parseDouble(clrStr);
                 double fat = Double.parseDouble(fatStr);
@@ -722,6 +647,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog.setContentView(R.layout.dialog_progress_layout);
         return dialog;
     }
-
 
 }

@@ -14,7 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.AppCompatButton;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.samprama.milkrecieptapp.MainActivity;
 import com.samprama.milkrecieptapp.R;

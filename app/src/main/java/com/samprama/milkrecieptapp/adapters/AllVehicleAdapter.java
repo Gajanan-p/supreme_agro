@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.samprama.milkrecieptapp.R;
 import com.samprama.milkrecieptapp.dialogs.VehicleItemClickListener;
-import com.samprama.milkrecieptapp.model.GetAllTesterModel;
 import com.samprama.milkrecieptapp.model.GetAllVehicleModel;
 
 import java.util.ArrayList;

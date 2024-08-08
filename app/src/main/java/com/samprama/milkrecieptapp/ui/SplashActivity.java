@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.samprama.milkrecieptapp.MainActivity;
 import com.samprama.milkrecieptapp.R;
