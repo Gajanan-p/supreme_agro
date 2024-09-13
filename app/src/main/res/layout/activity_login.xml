@@ -16,10 +16,10 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="150dp"
-            android:src="@drawable/ic_launcher_foreground"/>
-
+            android:layout_marginTop="100dp"
+            android:src="@drawable/uttam_logo"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -54,6 +54,7 @@
                 android:layout_height="match_parent"
                 android:lines="1"
                 android:inputType="number"
+                android:maxLength="10"
                 android:hint="@string/phone_number"/>
 
 
@@ -61,30 +62,13 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:textColor="@color/white"
             android:background="@drawable/button_background"
             android:text="Login" />
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/leaner_image_icon_sam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-<!--        <ImageView-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:src="@drawable/"/>-->
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
