@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.bright.supreme.MainActivity;
 import com.bright.supreme.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -35,8 +34,6 @@ public class SplashActivity extends AppCompatActivity {
         top = AnimationUtils.loadAnimation(this, R.anim.top);
         bottom = AnimationUtils.loadAnimation(this, R.anim.bottom);
         imageView.setAnimation(top);
-//        textView1.setAnimation(bottom);
-//        textView2.setAnimation(bottom);
 
         // Hide the action bar
         ActionBar actionBar = getActionBar();

@@ -16,12 +16,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.bright.supreme.MainActivity;
 import com.bright.supreme.R;
 import com.bright.supreme.model.CheckMobileModel;
 import com.bright.supreme.model.LoginData;
@@ -59,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             window.setTitle("Login");
         }
 
+       // editTextPassword.setText("9875953166");
         loginData = new LoginData();
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

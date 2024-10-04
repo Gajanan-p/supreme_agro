@@ -8,6 +8,8 @@ import com.bright.supreme.model.GetAllTesterModel;
 import com.bright.supreme.model.GetAllVehicleModel;
 import com.bright.supreme.model.RecResponseModel;
 import com.bright.supreme.model.RectNoModel;
+import com.bright.supreme.model.ReportReqModel;
+import com.bright.supreme.model.ReportViewModel;
 import com.bright.supreme.model.TesterNameModel;
 import com.bright.supreme.model.VehicleNoModel;
 
@@ -62,4 +64,8 @@ public interface ApiServices {
     @Headers("Content-Type: application/json")
     @GET("api/Agency/GetAllAgencyManual")
     Call<ArrayList<GetAllAgencyModel>> getAllAgencyForManualDataFromServer();
+
+    @Headers("Content-Type: application/json")
+    @POST("api/MilkRect/GetAllMilkReceipt")
+    Call<ReportViewModel> fetchReportFromServer(@Query("m_FDate")String fromDate,@Query("m_TDate")String toDate,@Query("m_Mobile")String mobileNo );
 }

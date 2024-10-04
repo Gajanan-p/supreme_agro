@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agency Name"
+                    android:textSize="14sp"
+                    android:textFontWeight="600"
+                    android:fontFamily="serif"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_row_report_agency_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15sp"
+                    android:textFontWeight="700"
+                    android:textColor="@color/blue_tool_bar"
+                    android:fontFamily="serif"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:weightSum="3">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1.5">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agency Code"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_agency_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1.5">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vehicle Number"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_vehicle_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MH21BH8515"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:weightSum="3">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DIP Qty"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_dip_qty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="MILK Qty"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_milk_qty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Temperature"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:weightSum="3">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FAT %"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_fat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CLR"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_clr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SNF"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_snf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:weightSum="1">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.5">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Flush Value"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_flush_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.5">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tester Name"
+                        android:textSize="14sp"
+                        android:textFontWeight="600"
+                        android:fontFamily="serif"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_row_report_tester_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textFontWeight="700"
+                        android:textColor="@color/blue_tool_bar"
+                        android:fontFamily="serif"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
